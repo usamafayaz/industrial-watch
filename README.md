@@ -48,8 +48,8 @@ The project includes a frontend developed in React Native, offering a user-frien
 
 3. Install React Native packages and dependencies:
 
-   ```npm install
-
+   ```bash
+   npm install
    ```
 
 4. For the backend server:
