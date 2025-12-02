@@ -1,23 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Image,
   View,
+  Image,
+  Text,
   StyleSheet,
+  ScrollView,
   TouchableWithoutFeedback,
   Keyboard,
   ToastAndroid,
-  Dimensions,
-  Text,
-  TouchableOpacity,
 } from 'react-native';
-import Modal from 'react-native-modal';
-import {ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import TextField from '../components/TextField';
-import ButtonComponent from '../components/ButtonComponent';
-import {useNavigation, CommonActions} from '@react-navigation/native';
-import {API_URL, updateAPIUrl} from '../../apiConfig';
-const {width, height} = Dimensions.get('window');
+import { useNavigation, CommonActions } from '@react-navigation/native';
+import TextField from '../components/TextField'; // Assuming you have a TextField component
+import { API_URL, updateAPIUrl } from '../../apiConfig';
 
 const Login = () => {
   const [usernameEmail, setUsernameEmail] = useState('');
@@ -67,26 +62,25 @@ const Login = () => {
       }
       const data = await response.json();
       let role = data.user_role.toLowerCase();
-      console.log(data);
       if (role === 'supervisor') {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: 'Supervisor Dashboard', params: {data: data}}],
+            routes: [{ name: 'Supervisor Dashboard', params: { data: data } }],
           }),
         );
       } else if (role === 'employee') {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: 'Employee Login', params: {data: data}}],
+            routes: [{ name: 'Employee Login', params: { data: data } }],
           }),
         );
       } else if (role === 'admin') {
         navigation.dispatch(
           CommonActions.reset({
             index: 0,
-            routes: [{name: 'Admin Dashboard', params: {name: data.name}}],
+            routes: [{ name: 'Admin Dashboard', params: { name: data.name } }],
           }),
         );
       } else {
@@ -102,6 +96,7 @@ const Login = () => {
       console.error('Error occurred during login:', error);
     }
   };
+
   const saveApiAddress = async () => {
     try {
       if (!apiAddress) {
@@ -122,7 +117,7 @@ const Login = () => {
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
-        routes: [{name: 'Admin Dashboard', params: {name: 'Usama'}}],
+        routes: [{ name: 'Admin Dashboard', params: { name: 'Usama' } }],
       }),
     );
   };
@@ -140,49 +135,29 @@ const Login = () => {
         </View>
         <View style={styles.formContainer}>
           <TextField
-            placeHolder="Username/Email"
+            style={styles.input}
+            placeholder="Username or Email"
             value={usernameEmail}
             onChangeText={setUsernameEmail}
+            placeholderTextColor="#A3A3A3"
           />
           <TextField
-            placeHolder="Password"
-            eyeIcon={true}
+            style={styles.input}
+            placeholder="Password"
             value={password}
             onChangeText={setPassword}
+            secureTextEntry
+            placeholderTextColor="#A3A3A3"
           />
-          <View style={styles.buttonWrapper}>
-            <ButtonComponent title="Login" onPress={handleLoginPress} />
+          <View style={styles.button}>
+            <Text
+              style={styles.buttonText}
+              onPress={handleLoginPress}
+            >
+              Login
+            </Text>
           </View>
         </View>
-        <Modal isVisible={apiModalVisible}>
-          <View style={styles.modalWrapper}>
-            <Text style={styles.modalHeaderStyle}>Change IP Address</Text>
-            <Text style={styles.hintText}>Current IP: {currentIP}</Text>
-            <Text style={styles.hintText}>IP Address:</Text>
-            <TextField
-              placeHolder="Enter IP Address"
-              value={apiAddress}
-              onChangeText={setApiAddress}
-              isNumeric={true}
-            />
-            <View style={styles.modalButtonWrapper}>
-              <TouchableOpacity onPress={() => setApiModalVisible(false)}>
-                <Text style={styles.cancelStyle}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={saveApiAddress}>
-                <Text style={styles.OKStyle}>Done</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-        <TouchableWithoutFeedback
-          onPress={() => {
-            setApiModalVisible(!apiModalVisible);
-          }}>
-          <View style={styles.IPButtonContainer}>
-            <Text style={styles.IPButtonText}>IP Address</Text>
-          </View>
-        </TouchableWithoutFeedback>
       </ScrollView>
     </TouchableWithoutFeedback>
   );
@@ -191,93 +166,53 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#181A20', // Deep dark background
   },
   imageContainer: {
     alignItems: 'center',
-    marginTop: height * 0.1,
-    marginBottom: height * 0.05,
+    marginTop: 51,
   },
   image: {
-    width: width * 0.8,
-    height: height * 0.27,
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    marginBottom: 8,
   },
   titleStyle: {
-    fontSize: width * 0.08,
-    color: 'black',
+    fontSize: 28,
+    color: '#F2F2F2', // Lighter text color
     fontWeight: 'bold',
+    margin: 10,
   },
   formContainer: {
-    alignItems: 'center',
-  },
-  buttonWrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    width: '100%',
+    width: '90%',
+    alignSelf: 'center',
+    backgroundColor: '#22242b', // Slightly lighter panel
+    borderRadius: 16,
+    padding: 22,
+    marginTop: 14,
+    shadowColor: '#000',
+    elevation: 4,
   },
   input: {
-    width: '100%',
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
+    backgroundColor: '#23262F',
+    color: '#F2F2F2',
+    borderRadius: 8,
+    padding: 14,
+    marginTop: 10,
+    marginBottom: 14,
   },
-  IPButtonContainer: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    backgroundColor: '#2196F3',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 20,
-  },
-  IPButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  modalHeaderStyle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom: 12,
-    alignSelf: 'flex-start',
-    marginTop: '5%',
-    marginLeft: '9%',
-  },
-  modalWrapper: {
+  button: {
+    backgroundColor: '#3E5C76',
+    borderRadius: 8,
+    padding: 16,
     alignItems: 'center',
-    backgroundColor: 'white',
-    height: 300,
-    width: 350,
-    alignSelf: 'center',
-    borderRadius: 30,
+    marginTop: 18,
   },
-  modalButtonWrapper: {
-    flexDirection: 'row',
-    marginLeft: '43%',
-    marginTop: '7%',
-  },
-  cancelStyle: {
-    color: '#2196F3',
-    marginRight: 10,
-    paddingVertical: '5%',
-  },
-  OKStyle: {
-    color: 'white',
-    backgroundColor: '#2196F3',
-    borderRadius: 20,
-    paddingHorizontal: '10%',
-    paddingVertical: '5%',
-  },
-  hintText: {
-    alignSelf: 'flex-start',
-    color: 'grey',
-    fontWeight: '700',
-    fontSize: 18,
-    marginLeft: 35,
-    marginTop: 20,
+  buttonText: {
+    color: '#F2F2F2',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
