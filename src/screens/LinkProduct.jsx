@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import SelectListComponent from '../components/SelectListComponent';
 import {API_URL} from '../../apiConfig';
 import TextField from '../components/TextField';

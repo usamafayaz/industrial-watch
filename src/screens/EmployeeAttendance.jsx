@@ -1,5 +1,11 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, StyleSheet, FlatList, ToastAndroid} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import PrimaryAppBar from '../components/PrimaryAppBar';
 import {API_URL} from '../../apiConfig';
 import {useFocusEffect} from '@react-navigation/native';

@@ -6,12 +6,12 @@ import {
   FlatList,
   Text,
   ActivityIndicator,
-  ToastAndroid,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import ToastAndroid from '../utils/Toast';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import PrimaryAppBar from '../components/PrimaryAppBar';
-import RNFetchBlob from 'rn-fetch-blob';
+import {downloadAndShare} from '../utils/download';
 import ButtonComponent from '../components/ButtonComponent';
 import {API_URL} from '../../apiConfig';
 
@@ -43,47 +43,15 @@ const ProductBatches = props => {
   };
 
   const downloadImages = async productNumber => {
-    const dirs = RNFetchBlob.fs.dirs;
-    const downloadDir = dirs.DownloadDir;
     try {
-      const folderPath = `${downloadDir}/DefectedImages`;
-
-      const isFolderExists = await RNFetchBlob.fs.isDir(folderPath);
-      if (!isFolderExists) {
-        await RNFetchBlob.fs.mkdir(folderPath); // Create the folder
-      }
-
-      // Construct the file path within the folder
-      const filePath = `${folderPath}/${encodeURIComponent(productNumber)}.zip`;
       ToastAndroid.show('Downloading has begun', ToastAndroid.SHORT);
-
-      RNFetchBlob.config({
-        addAndroidDownloads: {
-          useDownloadManager: true,
-          notification: true,
-          mime: 'application/zip',
-          title: 'Defected Images',
-          description: 'Downloading Defected Images',
-          path: filePath,
-        },
-        fileCache: true,
-      })
-        .fetch(
-          'GET',
-          `${API_URL}/Production/GetAllDefectedImages?product_number=${encodeURIComponent(
-            productNumber,
-          )}`,
-          {
-            'Content-Type': 'application/zip',
-          },
-        )
-        .then(res => {
-          ToastAndroid.show('Download Successful.', ToastAndroid.SHORT);
-          console.log('The file saved to ', res.path());
-        })
-        .catch(error => {
-          console.error('Fetch error:', error);
-        });
+      await downloadAndShare(
+        `${API_URL}/Production/GetAllDefectedImages?product_number=${encodeURIComponent(
+          productNumber,
+        )}`,
+        `${productNumber.replace(/[^\w-]/g, '_')}.zip`,
+        'application/zip',
+      );
     } catch (error) {
       console.error('Download failed:', error);
       ToastAndroid.show('Download Failed.', ToastAndroid.SHORT);
@@ -121,8 +89,8 @@ const ProductBatches = props => {
                             item.status === 1
                               ? 'rgba(256, 0, 0, 0.2)'
                               : item.status === 2
-                              ? 'transparent'
-                              : 'rgba(0, 256, 0, 0.2)',
+                                ? 'transparent'
+                                : 'rgba(0, 256, 0, 0.2)',
                           marginHorizontal: 10,
                           borderRadius: 10,
                         }}
@@ -198,7 +166,6 @@ const styles = StyleSheet.create({
   },
   noBatchesText: {
     flex: 1,
-    marginTop: 20,
     fontSize: 18,
     fontWeight: 'bold',
     color: 'black',

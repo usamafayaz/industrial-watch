@@ -8,15 +8,15 @@ import {
   Text,
   Button,
   Image,
-  ToastAndroid,
   ActivityIndicator,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation} from '@react-navigation/native';
 import TextField from '../components/TextField';
 import {RadioButton} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import Icon from '@expo/vector-icons/MaterialIcons';
+import {launchCamera, launchImageLibrary} from '../utils/imagePicker';
 import SelectListComponent from '../components/SelectListComponent';
 import {API_URL} from '../../apiConfig';
 

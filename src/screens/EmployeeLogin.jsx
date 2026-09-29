@@ -6,7 +6,7 @@ import EmployeeAttendance from './EmployeeAttendance';
 import EmployeeViolation from './EmployeeViolation';
 import EmployeeLoginHome from './EmployeeLoginHome';
 import EmployeeProfile from './EmployeeProfile';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 
 const Tab = createBottomTabNavigator();
 

@@ -5,14 +5,14 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Image,
-  ToastAndroid,
   ActivityIndicator,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation} from '@react-navigation/native';
 import TextField from '../components/TextField';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {launchImageLibrary} from 'react-native-image-picker';
+import Icon from '@expo/vector-icons/MaterialIcons';
+import {launchImageLibrary} from '../utils/imagePicker';
 import {API_URL} from '../../apiConfig';
 
 const AddGuest = () => {
