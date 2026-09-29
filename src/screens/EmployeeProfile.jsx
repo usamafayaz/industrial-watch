@@ -2,7 +2,7 @@ import React, {useCallback, useState} from 'react';
 import {StyleSheet, View, Image, Text, TouchableOpacity} from 'react-native';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import Modal from 'react-native-modal';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import {API_URL} from '../../apiConfig';
 const EmployeeProfile = props => {
   const employee = props.route.params.employee;

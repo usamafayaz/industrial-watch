@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
-  ToastAndroid,
   Image,
   ActivityIndicator,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import SelectListComponent from '../components/SelectListComponent';
 import {API_URL} from '../../apiConfig';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {launchImageLibrary} from '../utils/imagePicker';
 import ButtonComponent from '../components/ButtonComponent';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {useNavigation} from '@react-navigation/native';

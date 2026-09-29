@@ -3,10 +3,10 @@ import {
   StyleSheet,
   View,
   Image,
-  ToastAndroid,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation} from '@react-navigation/native';
 import TextField from '../components/TextField';

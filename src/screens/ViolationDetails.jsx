@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import PrimaryAppBar from '../components/PrimaryAppBar';
 import {API_URL} from '../../apiConfig';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
@@ -89,11 +90,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'black',
     marginTop: 10,
-  },
-  dateStyle: {
-    fontSize: 17,
-    color: 'black',
-    textAlign: 'center',
   },
   swiperContainer: {
     height: 380,

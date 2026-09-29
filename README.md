@@ -34,36 +34,24 @@ The project includes a frontend developed in React Native, offering a user-frien
 
 ## Installation and Setup
 
-1. Clone the repository:
+The app is built with Expo (SDK 57) and needs Node 22 (`nvm use`).
 
-   ```bash
-   git clone https://github.com/usamafayaz/industrial-watch.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd industrial-watch
-   ```
-
-3. Install React Native packages and dependencies:
-
+1. Install dependencies:
    ```bash
    npm install
    ```
 
-4. For the backend server:
+2. Start the backend (see the `industrial-watch-backend` README).
 
+3. Start the app:
    ```bash
-    git clone https://github.com/usamafayaz/industrial-watch-backend.git
+   npx expo start
    ```
+   Scan the QR code with Expo Go on your phone (same Wi-Fi as your computer), or press `a` / `i`
+   for the Android emulator / iOS simulator.
 
-5. Start the React Native frontend:
-   ```bash
-   npx react-native run-android
-   # or
-   npm start
-   ```
+4. On the login screen, tap **IP Address** and enter your computer's LAN IP
+   (e.g. `ipconfig getifaddr en0` on macOS). Default login is `admin` / `admin`.
 
 ## Contact
 

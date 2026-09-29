@@ -3,12 +3,11 @@ import {
   Text,
   View,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import Modal from 'react-native-modal';
 import CustomGrid from '../components/CustomGrid';
 
@@ -56,7 +55,7 @@ const SupervisorDashboard = props => {
           source={require('../../assets/icons/dashboard_bg.png')}
           style={styles.imageBackground}
           resizeMode="cover">
-          <SafeAreaView style={styles.safeAreaView}>
+          <View style={styles.safeAreaView}>
             <Text style={styles.headerStyle}>Supervisor Dashboard</Text>
             <Text style={styles.welcomeStyle}>Welcome</Text>
             <Text style={styles.nameStyle}>{name}</Text>
@@ -65,7 +64,7 @@ const SupervisorDashboard = props => {
               onPress={() => setModalVisibility(true)}>
               <Icon name="logout" size={25} color="white" />
             </TouchableOpacity>
-          </SafeAreaView>
+          </View>
         </ImageBackground>
       </View>
       <View style={styles.cardsWrapper}>

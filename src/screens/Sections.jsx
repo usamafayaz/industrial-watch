@@ -5,15 +5,15 @@ import {
   View,
   Text,
   ActivityIndicator,
-  ToastAndroid,
   RefreshControl,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native';
 import {API_URL} from '../../apiConfig';
 import PrimaryAppBar from '../components/PrimaryAppBar';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import SectionandMaterialCard from '../components/SectionandMaterialCard';
 
 const Sections = () => {

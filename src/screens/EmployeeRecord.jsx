@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, ToastAndroid, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import SearchBarComponent from '../components/SearchBarComponent';
 import EmployeeCard from '../components/EmployeeCard';
 import SelectListComponent from '../components/SelectListComponent';

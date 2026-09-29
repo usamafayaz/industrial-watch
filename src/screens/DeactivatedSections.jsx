@@ -5,9 +5,9 @@ import {
   View,
   Text,
   ActivityIndicator,
-  ToastAndroid,
   RefreshControl,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import SectionandMaterialCard from '../components/SectionandMaterialCard';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';

@@ -1,15 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  ToastAndroid,
-} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import PrimaryAppBar from '../components/PrimaryAppBar';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import {API_URL} from '../../apiConfig';
-import RNFetchBlob from 'rn-fetch-blob';
+import {downloadAndShare} from '../utils/download';
 
 const BatchDetails = props => {
   const [batchData, setBatchData] = useState(null);
@@ -37,48 +32,18 @@ const BatchDetails = props => {
   const downloadImages = async () => {
     const product_number = props.route.params.product_number;
     const batch_number = props.route.params.item.batch_number;
-    const dirs = RNFetchBlob.fs.dirs;
-    const downloadDir = dirs.DownloadDir;
     try {
-      const folderPath = `${downloadDir}/DefectedImages`;
-
-      // Check if the folder exists, create it if not
-      const isFolderExists = await RNFetchBlob.fs.isDir(folderPath);
-      if (!isFolderExists) {
-        await RNFetchBlob.fs.mkdir(folderPath); // Create the folder
-      }
-
-      // Construct the file path within the folder
-      const filePath = `${folderPath}/${encodeURIComponent(batch_number)}.zip`;
-
-      const response = await RNFetchBlob.config({
-        addAndroidDownloads: {
-          useDownloadManager: true,
-          notification: true,
-          mime: 'application/zip',
-          title: 'Defected Images',
-          description: 'Downloading Defected Images',
-          path: filePath,
-        },
-        fileCache: true,
-      }).fetch(
-        'GET',
+      ToastAndroid.show('Downloading has begun', ToastAndroid.SHORT);
+      await downloadAndShare(
         `${API_URL}/Production/GetDefectedImagesOfBatch?product_number=${encodeURIComponent(
           product_number,
         )}&batch_number=${encodeURIComponent(batch_number)}`,
-        {
-          'Content-Type': 'application/zip',
-        },
+        `${batch_number.replace(/[^\w-]/g, '_')}.zip`,
+        'application/zip',
       );
-
-      if (response.respInfo.status === 200) {
-        ToastAndroid.show('Download Successful.', ToastAndroid.SHORT);
-        console.log('The file saved to ', response.path());
-      } else {
-        console.error('Download failed:', response.respInfo.status);
-      }
     } catch (error) {
       console.error('Download failed:', error);
+      ToastAndroid.show('Download Failed.', ToastAndroid.SHORT);
     }
   };
 
@@ -98,15 +63,15 @@ const BatchDetails = props => {
                     batchData.status === 1
                       ? '#FF0000'
                       : batchData.status === 2
-                      ? 'grey'
-                      : 'green',
+                        ? 'grey'
+                        : 'green',
                 },
               ]}>
               {batchData.status === 1
                 ? 'Rejected'
                 : batchData.status === 2
-                ? 'Pending'
-                : 'Accepted'}
+                  ? 'Pending'
+                  : 'Accepted'}
             </Text>
           </View>
           <View style={styles.rowStyle}>
@@ -180,7 +145,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
     marginRight: '6%',

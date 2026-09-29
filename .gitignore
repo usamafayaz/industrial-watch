@@ -64,3 +64,11 @@ yarn-error.log
 
 # testing
 /coverage
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+/android/
+/ios/

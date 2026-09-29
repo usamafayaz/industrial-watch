@@ -5,8 +5,8 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  ToastAndroid,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import ViolationCard from '../components/ViolationCard';
 import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import PrimaryAppBar from '../components/PrimaryAppBar';
