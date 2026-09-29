@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {ScrollView, StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import {API_URL} from '../../apiConfig';
 import TextField from '../components/TextField';
 import ButtonComponent from '../components/ButtonComponent';

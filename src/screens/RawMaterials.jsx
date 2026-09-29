@@ -4,9 +4,9 @@ import {
   StyleSheet,
   View,
   Text,
-  ToastAndroid,
   ActivityIndicator,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import SectionandMaterialCard from '../components/SectionandMaterialCard';
 import ButtonComponent from '../components/ButtonComponent';
 import {TouchableOpacity} from 'react-native';

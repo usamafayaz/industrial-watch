@@ -4,12 +4,11 @@ import {
   StyleSheet,
   View,
   Image,
-  SafeAreaView,
   Text,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from '@expo/vector-icons/MaterialCommunityIcons';
 import {API_URL} from '../../apiConfig';
 
 const EmployeeCard = ({employees}) => {
@@ -21,7 +20,7 @@ const EmployeeCard = ({employees}) => {
   };
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={employees}
         renderItem={({item}) => {
@@ -60,7 +59,7 @@ const EmployeeCard = ({employees}) => {
         numColumns={2}
         contentContainerStyle={styles.grid}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

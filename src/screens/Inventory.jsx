@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import TextField from '../components/TextField';
 import {useNavigation} from '@react-navigation/native';
 
-import {ToastAndroid} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import SelectListComponent from '../components/SelectListComponent';
 
 const Inventory = () => {

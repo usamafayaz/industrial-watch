@@ -1,4 +1,41 @@
 {
-  "name": "IndustrialWatch",
-  "displayName": "IndustrialWatch"
+  "expo": {
+    "name": "Industrial Watch",
+    "slug": "industrial-watch",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/launcher.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "bundleIdentifier": "com.industrialwatch.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      }
+    },
+    "android": {
+      "package": "com.industrialwatch"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Industrial Watch needs photo access to upload employee and product images.",
+          "cameraPermission": "Industrial Watch needs camera access to capture employee and product images."
+        }
+      ],
+      "expo-sharing",
+      "expo-status-bar",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ]
+  }
 }

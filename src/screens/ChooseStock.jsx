@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, FlatList, View, ToastAndroid} from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import {
+  StyleSheet,
+  Text,
+  FlatList,
+  View,
+} from 'react-native';
+import ToastAndroid from '../utils/Toast';
+import CheckBox from 'expo-checkbox';
 import {API_URL} from '../../apiConfig';
 import PrimaryAppBar from '../components/PrimaryAppBar';
 import ButtonComponent from '../components/ButtonComponent';
@@ -49,7 +55,7 @@ const ChooseStock = props => {
         stocks: selectedStocks,
         raw_material_id: raw_material_id,
       };
-      navigation.navigate('Add Batch', {
+      navigation.popTo('Add Batch', {
         selectedStocks: stocksObject,
       });
     } else
@@ -84,7 +90,7 @@ const ChooseStock = props => {
               </Text>
               <CheckBox
                 value={selectedStocks.includes(item.stock_number)}
-                tintColors={{true: '#2196F3', false: 'black'}}
+                color={'#2196F3'}
                 onValueChange={newValue => handleCheckboxPress(index, newValue)}
               />
             </View>

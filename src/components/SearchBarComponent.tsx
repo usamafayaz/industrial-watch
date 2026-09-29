@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 
 const SearchBarComponent = (props: {onSearch: any; placeHolder: string}) => {
   const [query, setQuery] = useState('');

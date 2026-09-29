@@ -4,8 +4,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   View,
-  ToastAndroid,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import {useFocusEffect} from '@react-navigation/native';
 import SupervisorCard from '../components/SupervisorCard';
 import {API_URL} from '../../apiConfig';

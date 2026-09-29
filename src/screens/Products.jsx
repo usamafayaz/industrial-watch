@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import {StyleSheet, View, TouchableOpacity, FlatList, Text} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import {API_URL} from '../../apiConfig';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';

@@ -5,18 +5,18 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
-  ToastAndroid,
   Dimensions,
   Text,
   TouchableOpacity,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import Modal from 'react-native-modal';
 import {ScrollView} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import TextField from '../components/TextField';
 import ButtonComponent from '../components/ButtonComponent';
 import {useNavigation, CommonActions} from '@react-navigation/native';
-import {API_URL, updateAPIUrl} from '../../apiConfig';
+import {API_URL, DEFAULT_IP, updateAPIUrl} from '../../apiConfig';
 const {width, height} = Dimensions.get('window');
 
 const Login = () => {
@@ -35,7 +35,8 @@ const Login = () => {
           setCurrentIP(ipAddress);
           setApiAddress(ipAddress);
         } else {
-          setCurrentIP('Not Set');
+          setCurrentIP(DEFAULT_IP || 'Not Set');
+          setApiAddress(DEFAULT_IP);
         }
       } catch (error) {
         console.error('Error fetching IP address:', error);

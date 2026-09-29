@@ -64,3 +64,14 @@ yarn-error.log
 
 # testing
 /coverage
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+/android/
+/ios/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

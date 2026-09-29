@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, TouchableOpacity, ToastAndroid} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import {Text} from 'react-native-paper';
 import * as Progress from 'react-native-progress';
 import PrimaryAppBar from '../components/PrimaryAppBar';
-import MonthPicker from 'react-native-month-year-picker';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MonthPicker from '../components/MonthYearPicker';
+import Icon from '@expo/vector-icons/MaterialIcons';
 import {API_URL} from '../../apiConfig';
 
 const EmployeeSummary = props => {
@@ -39,6 +40,10 @@ const EmployeeSummary = props => {
   };
 
   const onValueChange = (event, newDate) => {
+    if (event === 'dismissedAction' || !newDate) {
+      setPickerVisibility(false);
+      return;
+    }
     const selectedDate = new Date(date);
     selectedDate.setMonth(newDate.getMonth());
     selectedDate.setFullYear(newDate.getFullYear());
@@ -86,7 +91,7 @@ const EmployeeSummary = props => {
             onChange={onValueChange}
             value={date}
             minimumDate={new Date(2000, 1)}
-            maximumDate={new Date(2025, 5)}
+            maximumDate={new Date()}
             locale="en"
           />
         )}

@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
-  ToastAndroid,
   Image,
   ScrollView,
   ActivityIndicator,
@@ -10,7 +9,8 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import {launchImageLibrary} from 'react-native-image-picker';
+import ToastAndroid from '../utils/Toast';
+import {launchImageLibrary} from '../utils/imagePicker';
 import {API_URL} from '../../apiConfig';
 import ButtonComponent from '../components/ButtonComponent';
 import SwiperFlatList from 'react-native-swiper-flatlist';

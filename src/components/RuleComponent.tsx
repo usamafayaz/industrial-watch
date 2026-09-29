@@ -10,7 +10,7 @@ import {
   Modal,
   Button,
 } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import CheckBox from 'expo-checkbox';
 
 interface Rule {
   id: number;
@@ -83,7 +83,7 @@ const RuleComponent = (props: {
           value={toggleCheckBox}
           onValueChange={handleCheckBoxChange}
           style={styles.boxStyle}
-          tintColors={{true: '#2196F3', false: 'black'}}
+          color={'#2196F3'}
         />
       </View>
 

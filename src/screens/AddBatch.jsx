@@ -4,9 +4,9 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  ToastAndroid,
   ActivityIndicator,
 } from 'react-native';
+import ToastAndroid from '../utils/Toast';
 import PrimaryAppBar from '../components/PrimaryAppBar';
 import {StyleSheet} from 'react-native';
 import TextField from '../components/TextField';

@@ -10,9 +10,9 @@ import {
   Modal,
   Button,
   TouchableWithoutFeedback,
-  ToastAndroid,
 } from 'react-native';
-import CheckBox from '@react-native-community/checkbox';
+import ToastAndroid from '../utils/Toast';
+import CheckBox from 'expo-checkbox';
 import {useNavigation} from '@react-navigation/native';
 import {API_URL} from '../../apiConfig';
 import TextField from '../components/TextField';
@@ -72,7 +72,7 @@ const AddSection = () => {
 
         if (response.ok) {
           ToastAndroid.show('Section Added Successfully', ToastAndroid.SHORT);
-          navigation.navigate('Sections');
+          navigation.popTo('Sections');
         } else {
           ToastAndroid.show(
             'Error occured while adding Section.',
@@ -169,7 +169,7 @@ const AddSection = () => {
           value={item.checkBox}
           onValueChange={() => handleCheckBoxChange(item)}
           style={styles.checkBoxStyle}
-          tintColors={{true: '#2196F3', false: 'black'}}
+          color={'#2196F3'}
         />
       </View>
       <View style={styles.horizontalLineStyle}></View>
@@ -192,7 +192,7 @@ const AddSection = () => {
             onValueChange={() => {
               setIsSpecial(!isSpecial);
             }}
-            tintColors={{true: '#2196F3', false: 'black'}}
+            color={'#2196F3'}
           />
           <Text style={styles.isSpecialText}>Is Special</Text>
         </View>
